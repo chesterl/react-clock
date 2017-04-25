@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import moment from 'moment';
+import { PropTypes } from 'prop-types';
+import moment from 'moment-timezone';
 
 class Clock extends Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
-      dateTime: moment(),
+      dateTime: moment().tz(props.timezone).format('MMMM Do YYYY, h:mm:ss a'),
       showClock: true
     }
   }
@@ -13,7 +14,7 @@ class Clock extends Component {
   componentWillMount() {
     const updateTime = () => {
       this.setState({
-        dateTime: moment()
+        dateTime: moment().tz(this.props.timezone).format('MMMM Do YYYY, h:mm:ss a')
       })
     }
     this.handle = window.setInterval(updateTime, 1000);
@@ -30,10 +31,14 @@ class Clock extends Component {
   render() {
     return (
       <p>
-      {this.state.showClock && this.state.dateTime.toString()}
+      {this.state.showClock && this.state.dateTime}
       </p>
     );
   }
+}
+
+Clock.propTypes = {
+  timezone: PropTypes.string.isRequired
 }
 
 export default Clock;
