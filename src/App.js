@@ -13,23 +13,6 @@ class App extends Component {
       timezone: moment.tz.names().shift()
     }
   }
-  //
-  // componentWillMount() {
-  //   const updateTime = () => {
-  //     this.setState({
-  //       dateTime: new Date()
-  //     })
-  //   }
-  //   this.handle = window.setInterval(updateTime, 1000);
-  // }
-  //
-  // componentDidMount() {
-  //   console.log("Did mount")
-  // }
-  //
-  // componentWillUnmount() {
-  //   window.clearInterval(this.handle);
-  // }
   selectTime(value) {
     this.setState({
       timezone: value
